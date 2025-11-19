@@ -1,5 +1,7 @@
 # Dialox
 
+**Your message is your business. Never worry about being blocked again.**
+
 ## About the project
 
 ### Description:
@@ -24,3 +26,9 @@ Dialox is a next-generation messenger designed to protect your digital freedom. 
 - Due to its architecture, our messenger depends on the number of its users, as they are the ones who transmit messages, calls, and other content to the intended recipients. Therefore, if there are too few users with server mode enabled and the load   is too heavy, the messenger's functionality may become unstable.
 
 **YOUR DIGITAL LIFE IS YOURS AND NO ONE ELSE'S**
+
+### Our goals
+- **Digital Freedom:** We should be free when we're online.
+- **Privacy First:** Privacy and security should come first.
+- **Censorship Resistence:** Censorship should not prevent people from communicating online.
+- **Transparency:** People need to see how the app works to be confident in its security.
