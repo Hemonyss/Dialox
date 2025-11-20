@@ -2,9 +2,14 @@
 
 **Your message is your business. Never worry about being blocked again.**
 
+## Table of contents
+- [Description](#description)
+- [Our goals](#our-goals)
+- [Tech Stack](#tech-stack)
+
 ## About the project
 
-### Description:
+### Description
 
 **Dialox: Your message is your business. Never worry about being blocked again.**
 
@@ -32,3 +37,6 @@ Dialox is a next-generation messenger designed to protect your digital freedom. 
 - **Privacy First:** Privacy and security should come first.
 - **Censorship Resistence:** Censorship should not prevent people from communicating online.
 - **Transparency:** People need to see how the app works to be confident in its security.
+
+## Tech stack
+- **Backend:** Python with flet
