@@ -1,7 +1,7 @@
 from dataclasses import dataclass, asdict
 from secrets import token_urlsafe
 import jwt
-from typing import Dict, Any
+from typing import Dict, Tuple, Any
 import time
 
 @dataclass
@@ -17,10 +17,13 @@ class access_token:
     # Access right
     right: int
 
-def create_access_token(sen_id: int, rec_id: int, right: int, exp: int = int(time.time()) + 900, tac: int = int(time.time())) -> Dict[str, Any]:
+def create_access_token(sen_id: int, rec_id: int, right: int, exp: int = int(time.time()) + 900, tac: int = int(time.time())) -> Tuple:
     access_token_dict = asdict(access_token(sen_id, rec_id, exp, tac, right))
     encode_key = token_urlsafe(32)
 
-    access_token_encode = jwt.encode(access_token_dict, encode_key, algorithm="HS256")
+    access_token_encode = jwt.encode(payload=access_token_dict, key=encode_key, algorithm="HS256")
 
     return (encode_key, access_token_encode)
+
+def decode_access_token(token: str | bytes, key: str) -> Dict[str, Any]:
+    return jwt.decode(jwt=token, key=key, algorithms="HS256")
