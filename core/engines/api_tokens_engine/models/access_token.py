@@ -20,15 +20,18 @@ class access_token:
     right: int
 
 def create_access_token(iss: str, sub: str, aud: str, right: int, exp: int = int(time.time()) + 900, iat: int = int(time.time())) -> Tuple:
+    # Transforming dataclass to dict
     access_token_dict = asdict(access_token(iss, sub, aud, exp, iat, right))
+    # Generate 256 bit key
     encode_key = token_urlsafe(32)
-
+    # Encode token
     access_token_encode = jwt.encode(payload=access_token_dict, key=encode_key, algorithm="HS256")
 
     return (encode_key, access_token_encode)
 
 def decode_access_token(token: str | bytes, key: str, aud: str) -> Dict[str, Any]:
     try:
+        # Decode token
         payload = jwt.decode(
             token,
             key,
@@ -37,7 +40,7 @@ def decode_access_token(token: str | bytes, key: str, aud: str) -> Dict[str, Any
             audience=aud,
             leeway=30
         )
-
+        # Verification that the token was created by the sender
         if payload["iss"] != payload["sub"]:
             raise jwt.InvalidTokenError("Iss and sub not equal")
 
