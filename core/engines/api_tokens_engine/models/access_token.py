@@ -19,7 +19,7 @@ class access_token:
     # Access right
     right: int
 
-def create_access_token(iss: str, sub: str, aud: str, right: int, exp: int = int(time.time()) + 900, iat: int = int(time.time())) -> Tuple:
+def create_access_token(iss: str, sub: str, aud: str, right: int, exp: int = int(time.time()) + 900, iat: int = int(time.time())) -> Tuple[str | bytes, str]:
     # Transforming dataclass to dict
     access_token_dict = asdict(access_token(iss, sub, aud, exp, iat, right))
     # Generate 256 bit key
@@ -36,13 +36,16 @@ def decode_access_token(token: str | bytes, key: str, aud: str) -> Dict[str, Any
             token,
             key,
             algorithms="HS256",
-            options={"verify_exp": True},
+            options={"verify_exp": True, "verify_iat": True},
             audience=aud,
             leeway=30
         )
         # Verification that the token was created by the sender
         if payload["iss"] != payload["sub"]:
             raise jwt.InvalidTokenError("Iss and sub not equal")
+
+        if payload["sub"] == payload["aud"]:
+            raise jwt.InvalidTokenError("sub and aud equal")
 
         return payload
     except jwt.ExpiredSignatureError:
@@ -51,3 +54,4 @@ def decode_access_token(token: str | bytes, key: str, aud: str) -> Dict[str, Any
         return "Incorrect signature"
     except jwt.InvalidTokenError as e:
         return f"Invalid token: {e}"
+t = create_access_token("1", "1", "2", 1)
