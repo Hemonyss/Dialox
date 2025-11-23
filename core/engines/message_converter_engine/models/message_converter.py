@@ -23,10 +23,13 @@ class message:
 
 def create_message(token: str, data: str | NDArray[uint8], time: int, chat_id: str, from_user: str, type: int, to_user: str | None = None) -> bytes:
     # Converting data
-    raw_message = f"{token}.{time}.{chat_id}.{from_user}.{to_user}.{type}.{data}"
-    # Converting message to bytes
-    byte_message = raw_message.encode("utf-8")
+    raw_message = asdict(message(token, data, time, chat_id, from_user, to_user, type))
+    # Serialization message
+    packed_message = packb(raw_message)
     # Compress message
-    compress_message = compress(byte_message)
+    compress_message = compress(packed_message)
 
-    return compress_message if len(compress_message) < len(byte_message) else byte_message
+    if len(compress_message) <= len(packed_message):
+        return b"\x01" + compress_message
+    
+    return b"\x00" + packed_message
