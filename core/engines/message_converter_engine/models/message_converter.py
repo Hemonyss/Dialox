@@ -46,12 +46,12 @@ def create_message(token: str, data: str | NDArray[uint8], time: int, chat_id: s
             # Serialization message
             output = packb(raw_message)
 
-            return bytes([data_type]) + output
+            return b"\x00" + output
 
         if len(output) <= len(packed_message):
-            return bytes([data_type]) + output
+            return b"\x01" + output
         
-        return b"\xff" + packed_message
+        return b"\x00" + packed_message
     except Exception as e:
         raise Exception(f"SerializeError: {e}")
 
@@ -62,7 +62,7 @@ def deserialize_message(message: bytes):
         # Compress type byte
         type_byte = message[0]
         # If message is not compressed
-        if type_byte == 0xff or type_byte == 0x01:
+        if type_byte == 0x00:
             # Return deserialize message
             return unpackb(message_payload)
         # If message is compressed, it is decompressed
