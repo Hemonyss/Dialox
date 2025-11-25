@@ -18,5 +18,4 @@ def image_compress(image_path: str, **kwargs) -> NDArray[uint8]:
         # Return NDArray[uint8]
         return compressed_image.numpy()
     except Exception as e:
-        print(f"Error: {e}")
-        return -1
+        raise Exception(f"ImageCompressorError: {e}")

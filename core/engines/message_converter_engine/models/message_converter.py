@@ -35,7 +35,7 @@ def create_message(token: str, data: str | NDArray[uint8], time: int, chat_id: s
             # Serialization message
             packed_message = packb(raw_message)
             # Compress message
-            output = lz4_compress(packed_message)
+            output = compress(packed_message)
         elif data_type == 1:
             # Import image compressor
             from ..io.read.image_compress import image_compress
@@ -46,23 +46,23 @@ def create_message(token: str, data: str | NDArray[uint8], time: int, chat_id: s
             # Serialization message
             output = packb(raw_message)
 
-            return output
-        elif data_type in [2, 3]:
-            packed_message = packb(raw_message)
+            return bytes([data_type]) + output
 
-        if data_type != 3 and len(output) <= len(packed_message):
-            return data_type.to_bytes(1, 'little') + output
+        if len(output) <= len(packed_message):
+            return bytes([data_type]) + output
         
-        return b"\x00" + packed_message
+        return b"\xff" + packed_message
     except Exception as e:
-        return f"Error: {e}"
+        raise Exception(f"SerializeError: {e}")
 
 def deserialize_message(message: bytes):
     try:
         # Remove the flag byte
         message_payload = message[1:]
+        # Compress type byte
+        type_byte = message[0]
         # If message is not compressed
-        if message[0] == b"\x00":
+        if type_byte == 0xff or type_byte == 0x01:
             # Return deserialize message
             return unpackb(message_payload)
         # If message is compressed, it is decompressed
@@ -70,7 +70,4 @@ def deserialize_message(message: bytes):
         # Return deserialize message
         return unpackb(decompressed_message)
     except Exception as e:
-        return f"Error: {e}"
-
-def lz4_compress(data: bytes) -> bytes:
-    return compress(data)
+        raise Exception(f"DeserializeError: {e}")
