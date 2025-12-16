@@ -39,4 +39,4 @@ Dialox is a next-generation messenger designed to protect your digital freedom. 
 - **Transparency:** People need to see how the app works to be confident in its security.
 
 ## Tech stack
-- **Frontend:** Python with flet
+- **Frontend:** QT6 QML
