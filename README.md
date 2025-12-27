@@ -1,6 +1,6 @@
-# Dialox
+# Veilum
 
-**Your message is your business. Never worry about being blocked again.**
+Your message is your business. Stay connected without central restrictions.
 
 ## Table of contents
 - [Description](#description)
@@ -11,32 +11,31 @@
 
 ### Description
 
-**Dialox: Your message is your business. Never worry about being blocked again.**
+Veilum: Your message is your business. Stay connected without central restrictions.
 
-Dialox is a next-generation messenger designed to protect your digital freedom. We believe that the right to private and unrestricted communication is fundamental.
+Veilum is a next-generation messenger built around a federated network to protect your digital freedom. We believe the right to private and unrestricted communication is fundamental.
 
-**How do we ensure this?**
-- Decentralized P2P network: Unlike traditional messaging apps, Dialox does not have central servers that can be disabled. This makes it virtually unblockable, even at the government level. Your messages are transmitted directly between user devices.
-- Advanced end-to-end encryption: We use the time-tested AES-256 algorithm in combination with the high-speed OCB mode. This not only protects the content of your conversations from any third party, but also ensures high-speed transmission.
-- Full functionality without compromise: Enjoy everything you're used to: lightning-fast messaging, high-quality voice and video calls, file sharing, and group creation - but now with a guarantee of privacy.
-  
-**Why is Dialox your choice?**
-- Your data belongs to you alone: We do not store, read, or transmit it.
-- Bypass any blockages: Stay in touch with your loved ones and colleagues anywhere in the world, regardless of local restrictions.
-- Open verifiable security: Our code is Open-Source, which allows independent security experts to verify its reliability.
+How do we ensure this?
+- Federated network: Unlike traditional messaging apps, Veilum does not rely on a single central server. Each server node can federate with others, ensuring messages flow reliably even if some nodes go offline.
+- Advanced end-to-end encryption: Veilum uses AES-256 combined with high-speed OCB mode, keeping your messages private while maintaining fast communication.
+- Full functionality without compromise: Messaging, high-quality voice and video calls, file sharing, and group chats—all with privacy and resilience built in.
 
-**Why might you not like Dialox?**
-- Unlike other messengers, which have a centralized server and all messages go through it, in Dialox your device becomes a small part of a decentralized server, which can cause higher battery and data usage.
-- Calls may be unstable or delayed under certain conditions, but these conditions are almost the same as in other messaging apps.
-- Due to its architecture, our messenger depends on the number of its users, as they are the ones who transmit messages, calls, and other content to the intended recipients. Therefore, if there are too few users with server mode enabled and the load   is too heavy, the messenger's functionality may become unstable.
+Why is Veilum your choice?
+- Your data belongs to you: Messages are never stored on a single central server and cannot be read by unauthorized parties.
+- Bypass local restrictions: Communicate freely, anywhere in the world, even under restrictive networks.
+- Open verifiable security: Veilum is fully open-source, allowing independent experts to audit its security.
 
-**YOUR DIGITAL LIFE IS YOURS AND NO ONE ELSE'S**
+What to be aware of?
+- Server load may affect performance: Calls and message delivery may vary depending on network load and the number of active federated nodes.
+- Network growth matters: The reliability and speed of the federated network depend on active participation; low participation may reduce stability.
+
+YOUR DIGITAL LIFE IS YOURS AND NO ONE ELSE'S
 
 ### Our goals
-- **Digital Freedom:** We should be free when we're online.
-- **Privacy First:** Privacy and security should come first.
-- **Censorship Resistence:** Censorship should not prevent people from communicating online.
-- **Transparency:** People need to see how the app works to be confident in its security.
+- Digital Freedom: Online communication should be unrestricted.
+- Privacy First: Your security and privacy come first.
+- Censorship Resistance: People must stay connected regardless of blocks.
+- Transparency: Open-source development ensures users can verify security.
 
 ## Tech stack
-- **Frontend:** QT6 QML
+- Frontend: QT6 QML
